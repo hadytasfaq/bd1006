@@ -79,20 +79,22 @@
 
 
 1. ИНТЕРСЕКТ
-```SELECT person_id FROM person_visits
+```sql
+SELECT person_id FROM person_visits
 WHERE pizzeria_id = (SELECT id FROM pizzeria WHERE name = 'Pizza Hut')
 INTERSECT
 SELECT person_id FROM person_visits
 WHERE pizzeria_id = (SELECT id FROM pizzeria WHERE name = 'Dominos'); 
 ```
-``` SELECT person_id FROM person_visits
+```sql
+SELECT person_id FROM person_visits
 WHERE pizzeria_id = (SELECT id FROM pizzeria WHERE name = 'Pizza Hut')
 INTERSECT
 SELECT person_id FROM person_visits
 WHERE pizzeria_id = (SELECT id FROM pizzeria WHERE name = 'Papa Johns'); 
 ```
 2. ИНТЕРСЕКТ АЛЛ
-```
+```sql
 SELECT person_id FROM person_visits
 WHERE pizzeria_id = (SELECT id FROM pizzeria WHERE name = 'Pizza Hut')
 INTERSECT ALL
@@ -108,21 +110,25 @@ WHERE pizzeria_id = (SELECT id FROM pizzeria WHERE name = 'Papa Johns');
 ```
 
 3. КОНКАТ
-```SELECT CONCAT (person.name, ' посетила ', pizzeria.name) AS visit
+```sql
+SELECT CONCAT (person.name, ' посетила ', pizzeria.name) AS visit
 FROM person
 JOIN person_visits ON person.id = person_visits.person_id
 JOIN pizzeria ON pizzeria.id = person_visits.pizzeria_id;
 ```
-```SELECT CONCAT(name, ' имеет рейтинг ', rating) AS pizzeria_details
+```sql
+SELECT CONCAT(name, ' имеет рейтинг ', rating) AS pizzeria_details
 FROM pizzeria; 
 ```
 4. ФОРМАТ
-```SELECT FORMAT('Person %s (age %s) visited %s', person.name, person.age, pizzeria.name) AS "ДАННЫЕ ЧЕЛОВЕКА"
+```sql
+SELECT FORMAT('Person %s (age %s) visited %s', person.name, person.age, pizzeria.name) AS "ДАННЫЕ ЧЕЛОВЕКА"
 FROM person
 JOIN person_visits ON person.id = person_visits.person_id
 JOIN pizzeria ON pizzeria.id = person_visits.pizzeria_id;
 ```
-```SELECT FORMAT('%s %s посетил(а) %s', person.name, person.gender, pizzeria.name) AS "ктокуда"
+```sql
+SELECT FORMAT('%s %s посетил(а) %s', person.name, person.gender, pizzeria.name) AS "ктокуда"
 FROM person
 JOIN person_visits ON person.id = person_visits.person_id
 JOIN pizzeria ON pizzeria.id = person_visits.pizzeria_id;
